@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const categories = [
+/* const categories = [
   {
     "id": 9,
     "name": "General Knowledge"
@@ -98,9 +98,19 @@ const categories = [
     "id": 32,
     "name": "Entertainment: Cartoon & Animations"
   }
-]
+] */
 
-const fetchTrivia = async ( difficulty="" ,category) => {
+const fetchCategories = async()=>{
+
+  const { data } = await axios.get(`https://opentdb.com/api_category.php`); 
+
+  const categories = data.trivia_categories; 
+
+  return categories;
+
+}
+
+const fetchTrivia = async ( difficulty="", category) => {
 
   const { data } = await axios.get(`https://opentdb.com/api.php?amount=1&category=${category}&difficulty=${difficulty}`);
 
@@ -108,11 +118,13 @@ const fetchTrivia = async ( difficulty="" ,category) => {
 
 }
 
-export const getQuestionBank = (difficulty) => {
+export const getQuestionBank = async(difficulty) => {
 
   let questions = [];
-
+  const categories = await fetchCategories();
   let cont = 0;
+  
+  console.log(categories);
 
   categories.map(async (r) => {
     const res = await fetchTrivia(difficulty, r.id);
@@ -128,5 +140,4 @@ export const getQuestionBank = (difficulty) => {
   console.log(questions);
 
   return questions;
-
 }

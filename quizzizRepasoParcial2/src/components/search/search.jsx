@@ -3,16 +3,14 @@ import { getQuestionBank } from "../../services/trivia.services";
 
 export default function Search({ getOpt=()=>{} }){
 
-    const handlerSubmit = (e)=>{
+    const handlerSubmit = async(e)=>{
         e.preventDefault();
 
         const opt = e.target[0].value;
 
         console.log(opt);
 
-        const trivia = getQuestionBank(opt);
-
-        /* console.log(trivia); */
+        const trivia = await getQuestionBank(opt);
 
         getOpt(trivia);
     }
