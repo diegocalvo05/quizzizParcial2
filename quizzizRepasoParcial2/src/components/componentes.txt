@@ -1,1 +1,24 @@
 aqui van los componentes
+
+const [item, setItem] = useState()
+
+quizziz
+
+onclick= 
+
+{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {}
+
+{
+    ((categories)=>{
+        
+        const element = fetchTrivia(category)
+        
+        const questionBank [] = element, n=n+1
+
+        return(
+            <>
+        )
+    })
+}
+
+quizziz.question quizziz.answer
